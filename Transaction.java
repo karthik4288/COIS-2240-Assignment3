@@ -23,8 +23,19 @@ public class Transaction {
 		return instance;
 	}
    public void displayTransactionHistory() {
+	   try (BufferedReader reader = new BufferedReader(new FileReader("transactions.txt"))) {
+	        String transaction;
+	        while ((transaction = reader.readLine()) != null) {
+	            System.out.println(transaction);
+	        }
+	    } catch (IOException e) {
+	        
+	    }
+	        
+	        
+	    }
 	
-}
+
 	    
 	    
 	    
