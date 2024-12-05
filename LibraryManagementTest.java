@@ -1,6 +1,9 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Constructor;
 
 public class LibraryManagementTest {
 
@@ -67,6 +70,20 @@ public class LibraryManagementTest {
 		
 		boolean checkReturn = transaction.returnBook(book, member);
 		assertFalse(checkReturn);
+		
+
 	
 }
+	@Test
+	public void testSingletonTransaction() throws Exception {
+		try {
+			Constructor<Transaction> constructor = Transaction.class.getDeclaredConstructor();
+			int modifier= constructor.getModifiers();
+			assertEquals(2,modifier);
+			
+		}catch (Exception e) {
+			throw new Exception("Error! Specified constructor was not found");
+		}
+	}
 }
+
