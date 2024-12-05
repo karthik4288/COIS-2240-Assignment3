@@ -47,5 +47,26 @@ public class LibraryManagementTest {
 	
 
 }
+	@Test
+	public void testBorrowReturn() throws Exception {
+		Book book = new Book (500, "Paleontology");
+		Member member = new Member(5, "Raj");
+		assertTrue(book.isAvailable());
+		
+		Transaction transaction = Transaction.getTransaction();
+		boolean bookAvailable = transaction.borrowBook(book, member);
+		assertTrue(bookAvailable);
+		assertFalse(book.isAvailable());
+		
+		boolean checkUnavailable = transaction.borrowBook(book, member);
+		assertFalse(checkUnavailable);
+		
+		boolean returnBook = transaction.returnBook(book, member);
+		assertTrue (returnBook);
+		assertTrue(book.isAvailable());
+		
+		boolean checkReturn = transaction.returnBook(book, member);
+		assertFalse(checkReturn);
 	
+}
 }
